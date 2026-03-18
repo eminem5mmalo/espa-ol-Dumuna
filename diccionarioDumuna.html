@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bunguing̃uma We K̃unzha Kuhtshihka — Diccionario Dumuna</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --oro: #664b06;
+  --oro2: #f0c040;
+  --tierra: #1a0d00;
+  --tierra2: #2e1a06;
+  --barro: #7a4a10;
+  --crema: #f5ead0;
+  --crema2: #e8d5b0;
+  --verde: #2d5a1e;
+  --verde2: #46da10;
+  --rojo: #8b1a0a;
+  --azul: #1a3a6e;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Lora', Georgia, serif;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* FONDO CON IMAGEN */
+.bg-layer {
+  position: fixed;
+  inset: 0;
+  background-image: url('1773550046227_image.png');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.bg-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 5, 0, 0.82) 0%,
+    rgba(26, 13, 0, 0.78) 30%,
+    rgba(30, 20, 5, 0.80) 60%,
+    rgba(10, 5, 0, 0.85) 100%
+  );
+  z-index: 1;
+}
+
+/* PATRÓN TEJIDO WIWA */
+.bg-pattern {
+  position: fixed;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(212,160,23,0.04) 0px, rgba(212,160,23,0.04) 2px, transparent 2px, transparent 20px),
+    repeating-linear-gradient(-45deg, rgba(212,160,23,0.04) 0px, rgba(212,160,23,0.04) 2px, transparent 2px, transparent 20px);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.wrap {
+  position: relative;
+  z-index: 10;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 16px 60px;
+}
+
+/* ===== HEADER ===== */
+header {
+  text-align: center;
+  padding: 36px 20px 24px;
+  border-bottom: 1px solid rgba(231, 248, 5, 0.25);
+  margin-bottom: 28px;
+}
+
+.header-emblem {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 10px;
+  animation: floatAnim 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 12px rgba(243, 190, 56, 0));
+}
+
+@keyframes floatAnim {
+  0%,100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+.header-main-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(28px, 6vw, 54px);
+  color: var(--oro2);
+  letter-spacing: 6px;
+  text-shadow: 0 0 30px rgba(212,160,23,0.6), 0 2px 4px rgba(0,0,0,0.8);
+  line-height: 1;
+}
+
+.header-subtitle {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(11px, 2vw, 15px);
+  color: var(--crema2);
+  letter-spacing: 3px;
+  margin-top: 6px;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.header-book {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--oro);
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  margin: 14px 0 0;
+}
+
+.divider-line {
+  height: 1px;
+  width: 80px;
+  background: linear-gradient(to right, transparent, var(--oro), transparent);
+}
+
+.divider-diamond {
+  width: 8px; height: 8px;
+  background: var(--oro);
+  transform: rotate(45deg);
+}
+
+/* ===== TABS ===== */
+.tabs {
+  display: flex;
+  gap: 3px;
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(212,160,23,0.2);
+  border-radius: 50px;
+  padding: 5px;
+  width: fit-content;
+  margin: 0 auto 28px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tab {
+  padding: 9px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: rgba(245,234,208,0.6);
+  border: none;
+  background: transparent;
+  transition: all 0.3s;
+}
+
+.tab.active {
+  background: linear-gradient(135deg, var(--barro), var(--oro));
+  color: var(--tierra);
+  font-weight: 700;
+  box-shadow: 0 2px 12px rgba(212,160,23,0.4);
+}
+
+.tab:hover:not(.active) { color: var(--oro); }
+
+/* ===== PANELS ===== */
+.panel { display:none; animation: fadeUp 0.4s ease; }
+.panel.active { display:block; }
+
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(14px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* ===== GLASS CARD ===== */
+.card {
+  background: rgba(10, 5, 0, 0.65);
+  border: 1px solid rgba(212,160,23,0.25);
+  border-radius: 16px;
+  padding: 24px 28px;
+  backdrop-filter: blur(12px);
+  margin-bottom: 18px;
+}
+
+.card-title {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: var(--oro);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+/* ===== TRANSLATOR ===== */
+.translator-grid {
+  display: grid;
+  grid-template-columns: 1fr 50px 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.lang-label {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--oro);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.translator-input, .translator-output {
+  width: 100%;
+  min-height: 120px;
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(212,160,23,0.3);
+  border-radius: 10px;
+  color: var(--crema);
+  font-family: 'Lora', serif;
+  font-size: 17px;
+  padding: 14px 16px;
+  resize: vertical;
+  transition: border 0.2s;
+  line-height: 1.7;
+}
+
+.translator-input:focus { outline:none; border-color: var(--oro); }
+.translator-input::placeholder { color: rgba(245,234,208,0.3); font-style:italic; font-size:14px; }
+
+.translator-output {
+  background: rgba(212,160,23,0.06);
+  color: var(--oro2);
+  font-style: italic;
+  cursor: default;
+}
+
+.swap-btn {
+  width: 44px; height: 44px;
+  background: rgba(212,160,23,0.15);
+  border: 1px solid rgba(212,160,23,0.4);
+  border-radius: 50%;
+  color: var(--oro);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto;
+  transition: all 0.3s;
+}
+
+.swap-btn:hover {
+  background: var(--oro);
+  color: var(--tierra);
+  transform: rotate(180deg);
+}
+
+.translate-btn {
+  width: 100%;
+  padding: 13px;
+  background: linear-gradient(135deg, var(--verde), var(--verde2));
+  border: 1px solid rgba(212,160,23,0.3);
+  border-radius: 10px;
+  color: var(--crema);
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  margin-top: 14px;
+  transition: all 0.3s;
+  text-transform: uppercase;
+}
+
+.translate-btn:hover {
+  background: linear-gradient(135deg, var(--verde2), #5ea840);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+.result-info {
+  text-align: center;
+  font-size: 13px;
+  color: rgba(245,234,208,0.5);
+  margin-top: 10px;
+  font-style: italic;
+  min-height: 20px;
+}
+
+.result-info.found { color: #7dbb60; }
+.result-info.notfound { color: #e8a060; }
+
+/* DIR INDICATOR */
+.dir-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  color: rgba(245,234,208,0.6);
+  letter-spacing: 1.5px;
+}
+
+.dir-arrow { color: var(--oro); font-size: 18px; }
+
+/* ===== DICTIONARY ===== */
+.search-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 180px;
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(212,160,23,0.3);
+  border-radius: 8px;
+  color: var(--crema);
+  font-family: 'Lora', serif;
+  font-size: 14px;
+  padding: 10px 14px;
+  transition: border 0.2s;
+}
+
+.search-input:focus { outline:none; border-color:var(--oro); }
+.search-input::placeholder { color: rgba(245,234,208,0.3); }
+
+.cat-select {
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(212,160,23,0.3);
+  border-radius: 8px;
+  color: var(--crema);
+  font-family: 'Lora', serif;
+  font-size: 13px;
+  padding: 10px 12px;
+}
+
+.cat-select option { background: #1a0d00; }
+
+.dict-stats {
+  font-size: 12px;
+  color: rgba(245,234,208,0.4);
+  text-align: right;
+  margin-bottom: 12px;
+  font-style: italic;
+}
+
+.dict-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.dict-card {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(212,160,23,0.15);
+  border-radius: 10px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.dict-card::before {
+  content:'';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--cat-color, var(--oro));
+  border-radius: 3px 0 0 3px;
+}
+
+.dict-card:hover {
+  border-color: rgba(212,160,23,0.5);
+  background: rgba(212,160,23,0.08);
+  transform: translateY(-2px);
+}
+
+.dict-dumuna {
+  font-family: 'Cinzel', serif;
+  font-size: 17px;
+  color: var(--oro2);
+  margin-bottom: 3px;
+  padding-right: 28px;
+}
+
+.dict-spanish {
+  font-size: 13px;
+  color: var(--crema2);
+  line-height: 1.4;
+}
+
+.dict-cat-tag {
+  display: inline-block;
+  font-size: 9px;
+  padding: 2px 7px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-top: 6px;
+  font-weight: 600;
+  background: rgba(212,160,23,0.15);
+  color: var(--oro);
+}
+
+.speak-mini {
+  position: absolute;
+  top: 10px; right: 10px;
+  background: rgba(212,160,23,0.12);
+  border: none;
+  border-radius: 6px;
+  color: rgba(212,160,23,0.7);
+  cursor: pointer;
+  padding: 3px 7px;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+.speak-mini:hover { color: var(--oro); background: rgba(212,160,23,0.25); }
+
+.empty-state {
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 40px;
+  color: rgba(245,234,208,0.3);
+  font-style: italic;
+}
+
+/* ===== PHRASES ===== */
+.phrase-group { margin-bottom: 24px; }
+
+.phrase-group-title {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  color: var(--oro);
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: uppercase;
+}
+
+.phrase-group-title::after {
+  content:'';
+  flex:1;
+  height: 1px;
+  background: linear-gradient(to right, rgba(212,160,23,0.4), transparent);
+}
+
+.phrase-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(212,160,23,0.1);
+  border-radius: 8px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.phrase-item:hover {
+  border-color: rgba(212,160,23,0.35);
+  background: rgba(212,160,23,0.06);
+}
+
+.phrase-es { font-size: 14px; color: var(--crema2); }
+.phrase-du { font-size: 14px; color: var(--oro); font-style: italic; }
+
+/* ===== GRAMMAR ===== */
+.grammar-section { margin-bottom: 20px; }
+
+.grammar-title {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  color: var(--oro);
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(212,160,23,0.2);
+}
+
+.grammar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 8px;
+}
+
+.grammar-item {
+  background: rgba(0,0,0,0.35);
+  border: 1px solid rgba(212,160,23,0.12);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.grammar-du {
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  color: var(--oro2);
+}
+
+.grammar-es {
+  font-size: 12px;
+  color: rgba(245,234,208,0.6);
+  margin-top: 2px;
+}
+
+/* VERB TABLE */
+.verb-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.verb-table th {
+  background: rgba(212,160,23,0.15);
+  color: var(--oro);
+  padding: 8px 10px;
+  text-align: left;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.verb-table td {
+  padding: 7px 10px;
+  border-bottom: 1px solid rgba(212,160,23,0.08);
+  color: var(--crema2);
+}
+
+.verb-table tr:hover td { background: rgba(212,160,23,0.05); }
+
+/* ===== ADD WORD ===== */
+.add-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.form-field { display: flex; flex-direction: column; gap: 5px; }
+
+.form-label {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: var(--oro);
+  text-transform: uppercase;
+}
+
+.form-input, .form-select, .form-textarea {
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(212,160,23,0.25);
+  border-radius: 8px;
+  color: var(--crema);
+  font-family: 'Lora', serif;
+  font-size: 14px;
+  padding: 9px 13px;
+  transition: border 0.2s;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  outline:none; border-color: var(--oro);
+}
+
+.form-select option { background: #1a0d00; }
+.form-textarea { resize: vertical; min-height: 56px; }
+
+.add-btn {
+  grid-column: 1/-1;
+  padding: 12px;
+  background: linear-gradient(135deg, var(--barro), var(--oro));
+  border: none;
+  border-radius: 10px;
+  color: var(--tierra);
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+}
+
+.add-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+.success-flash {
+  display: none;
+  grid-column: 1/-1;
+  background: rgba(74,138,50,0.2);
+  border: 1px solid rgba(74,138,50,0.4);
+  border-radius: 8px;
+  color: #90d470;
+  text-align: center;
+  padding: 10px;
+  font-size: 13px;
+}
+
+/* ===== EXPORT TOOLS ===== */
+.tools-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.tool-btn {
+  padding: 8px 16px;
+  border-radius: 7px;
+  border: 1px solid rgba(212,160,23,0.25);
+  background: rgba(0,0,0,0.3);
+  color: rgba(245,234,208,0.6);
+  font-family: 'Lora', serif;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tool-btn:hover {
+  border-color: var(--oro);
+  color: var(--oro);
+}
+
+/* ===== FOOTER / AUTHORS ===== */
+footer {
+  text-align: center;
+  padding: 28px 20px 16px;
+  border-top: 1px solid rgba(212,160,23,0.2);
+  margin-top: 20px;
+}
+
+.footer-book-title {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  color: var(--oro);
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.authors-row {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.author-block {
+  text-align: center;
+}
+
+.author-role {
+  font-size: 10px;
+  color: rgba(245,234,208,0.4);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 4px;
+}
+
+.author-name-es {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  color: var(--oro2);
+  letter-spacing: 1px;
+}
+
+.author-name-du {
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  color: var(--crema);
+  letter-spacing: 1px;
+}
+
+.footer-note {
+  font-size: 11px;
+  color: rgba(245,234,208,0.3);
+  margin-top: 16px;
+  font-style: italic;
+}
+
+/* ===== NOTIFICATION ===== */
+.notif {
+  position: fixed;
+  bottom: 20px; right: 20px;
+  background: rgba(26,13,0,0.95);
+  border: 1px solid var(--oro);
+  color: var(--crema);
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 13px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: all 0.3s;
+  z-index: 999;
+  max-width: 340px;
+  pointer-events: none;
+}
+
+.notif.show { opacity:1; transform:translateY(0); }
+
+/* HIGHLIGHT SEARCH */
+mark {
+  background: rgba(212,160,23,0.3);
+  color: var(--oro2);
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+
+.footer-logo {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(212,160,23,0.15);
+}
+
+.footer-logo-img {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 16px rgba(212,160,23,0.35));
+  animation: floatLogo 4s ease-in-out infinite;
+  border-radius: 50%;
+}
+
+@keyframes floatLogo {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* RESPONSIVE */
+@media(max-width: 600px) {
+  .translator-grid { grid-template-columns: 1fr; }
+  .swap-btn { transform: rotate(90deg); margin: 4px auto; }
+  .swap-btn:hover { transform: rotate(270deg); }
+  .add-form-grid { grid-template-columns: 1fr; }
+  .phrase-item { grid-template-columns: 1fr; }
+  .authors-row { gap: 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-layer"></div>
+<div class="bg-overlay"></div>
+<div class="bg-pattern"></div>
+
+<div class="wrap">
+
+<!-- ===== HEADER ===== -->
+<header>
+  <span class="header-emblem">🏔️</span>
+  <div class="header-main-title">BUNGUING<span style="text-decoration:line-through;">U</span>MA WE K<span style="text-decoration:line-through;">U</span>NZHA KUHTSHIHKA</div>
+  <div class="header-subtitle">DICCI<span style="text-decoration:line-through;">O</span>NARIO D<span style="text-decoration:line-through;">U</span>M<span style="text-decoration:line-through;">U</span>NA — Lengua del Pueblo Wiwa</div>
+  <div class="header-book">✍️ Autora: <strong>Fidelina Malo Alonso</strong> · Docente Bilingüe Wiwa · San Juan del Cesar, 2007</div>
+  <div class="divider">
+    <span class="divider-line"></span>
+    <span class="divider-diamond"></span>
+    <span class="divider-line"></span>
+  </div>
+</header>
+
+<!-- ===== TABS ===== -->
+<div class="tabs">
+  <button class="tab active" onclick="showTab('traductor', this)">🔄 Traducir</button>
+  <button class="tab" onclick="showTab('diccionario', this)">📖 Diccionario</button>
+  <button class="tab" onclick="showTab('frases', this)">💬 Frases</button>
+  <button class="tab" onclick="showTab('gramatica', this)">📐 Gramática</button>
+  <button class="tab" onclick="showTab('agregar', this)">➕ Agregar</button>
+</div>
+
+<!-- ===================== TRADUCTOR ===================== -->
+<div id="panel-traductor" class="panel active">
+  <div class="card">
+    <div class="dir-row">
+      <span id="dir-from">Español</span>
+      <span class="dir-arrow">⟶</span>
+      <span id="dir-to">Dumuna</span>
+    </div>
+
+    <div class="translator-grid">
+      <div>
+        <div class="lang-label" id="label-from">🇨🇴 Español</div>
+        <textarea class="translator-input" id="input-text"
+          placeholder="Escribe una palabra en español..."
+          oninput="liveTranslate()"></textarea>
+      </div>
+
+      <button class="swap-btn" onclick="swapDir()" title="Invertir dirección">⇄</button>
+
+      <div>
+        <div class="lang-label" id="label-to">🏔️ Dumuna</div>
+        <textarea class="translator-output" id="output-text" readonly
+          placeholder="Traducción Dumuna..."></textarea>
+      </div>
+    </div>
+
+    <button class="translate-btn" onclick="translate()">
+      🔄 &nbsp; Traducir
+    </button>
+    <div class="result-info" id="result-info"></div>
+  </div>
+
+  <!-- QUICK EXAMPLES -->
+  <div class="card">
+    <div class="card-title">⚡ Palabras rápidas del diccionario oficial</div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px;">
+      <button class="tool-btn" onclick="quickTranslate('agua')">agua</button>
+      <button class="tool-btn" onclick="quickTranslate('montaña')">montaña</button>
+      <button class="tool-btn" onclick="quickTranslate('familia')">familia</button>
+      <button class="tool-btn" onclick="quickTranslate('sol')">sol</button>
+      <button class="tool-btn" onclick="quickTranslate('lluvia')">lluvia</button>
+      <button class="tool-btn" onclick="quickTranslate('hola')">hola</button>
+      <button class="tool-btn" onclick="quickTranslate('mamá')">mamá</button>
+      <button class="tool-btn" onclick="quickTranslate('tierra')">tierra</button>
+      <button class="tool-btn" onclick="quickTranslate('tigre')">tigre</button>
+      <button class="tool-btn" onclick="quickTranslate('noche')">noche</button>
+      <button class="tool-btn" onclick="quickTranslate('fuego')">fuego</button>
+      <button class="tool-btn" onclick="quickTranslate('perro')">perro</button>
+      <button class="tool-btn" onclick="quickTranslate('ojo')">ojo</button>
+      <button class="tool-btn" onclick="quickTranslate('mano')">mano</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== DICCIONARIO ===================== -->
+<div id="panel-diccionario" class="panel">
+  <div class="card">
+    <div class="tools-row">
+      <button class="tool-btn" onclick="exportJSON()">📤 Exportar JSON</button>
+      <button class="tool-btn" onclick="exportCSV()">📊 Exportar CSV</button>
+      <button class="tool-btn" onclick="document.getElementById('imp-file').click()">📥 Importar</button>
+      <input type="file" id="imp-file" accept=".json" style="display:none" onchange="importJSON(event)">
+    </div>
+
+    <div class="search-row">
+      <input class="search-input" type="text" id="search-q"
+        placeholder="🔍 Buscar en Español o Dumuna..."
+        oninput="renderDict()">
+      <select class="cat-select" id="cat-filter" onchange="renderDict()">
+        <option value="">Todas las categorías</option>
+        <option value="saludos">Saludos y Expresiones</option>
+        <option value="naturaleza">Naturaleza</option>
+        <option value="familia">Familia</option>
+        <option value="cuerpo">Cuerpo humano</option>
+        <option value="animales">Animales</option>
+        <option value="aves">Aves</option>
+        <option value="plantas">Plantas</option>
+        <option value="insectos">Insectos</option>
+        <option value="numeros">Números</option>
+        <option value="verbos">Verbos</option>
+        <option value="adverbios">Adverbios</option>
+        <option value="pronombres">Pronombres</option>
+        <option value="sustantivos">Sustantivos</option>
+        <option value="adjetivos">Adjetivos</option>
+        <option value="general">General</option>
+      </select>
+    </div>
+
+    <div class="dict-stats">
+      Mostrando <span id="dict-shown">0</span> de <span id="dict-total">0</span> palabras del diccionario oficial Ashekan Dzina
+    </div>
+
+    <div class="dict-grid" id="dict-grid"></div>
+  </div>
+</div>
+
+<!-- ===================== FRASES ===================== -->
+<div id="panel-frases" class="panel">
+  <div class="card">
+    <div class="card-title">💬 Saludos y Expresiones Oficiales Dumuna</div>
+    <p style="font-size:13px; color:rgba(245,234,208,0.5); margin-bottom:20px; font-style:italic;">
+      Del Diccionario Ashekan Dzina (2007). Haz clic en cualquier frase para escucharla.
+    </p>
+    <div id="phrases-container"></div>
+  </div>
+</div>
+
+<!-- ===================== GRAMÁTICA ===================== -->
+<div id="panel-gramatica" class="panel">
+  <div class="card">
+    <div class="card-title">📐 Gramática Dumuna — Ashekan Dzina 2007</div>
+
+    <div class="grammar-section">
+      <div class="grammar-title">🔤 Pronombres personales</div>
+      <div class="grammar-grid">
+        <div class="grammar-item"><div class="grammar-du">Ra</div><div class="grammar-es">Yo</div></div>
+        <div class="grammar-item"><div class="grammar-du">Ma</div><div class="grammar-es">Tú</div></div>
+        <div class="grammar-item"><div class="grammar-du">Na</div><div class="grammar-es">Él / Ella</div></div>
+        <div class="grammar-item"><div class="grammar-du">Nabi</div><div class="grammar-es">Nosotros</div></div>
+        <div class="grammar-item"><div class="grammar-du">Mabi</div><div class="grammar-es">Ustedes</div></div>
+        <div class="grammar-item"><div class="grammar-du">Ijkuna</div><div class="grammar-es">Ellos</div></div>
+      </div>
+    </div>
+
+    <div class="grammar-section">
+      <div class="grammar-title">🔢 Números</div>
+      <div class="grammar-grid">
+        <div class="grammar-item"><div class="grammar-du">Shunkua</div><div class="grammar-es">1</div></div>
+        <div class="grammar-item"><div class="grammar-du">Moa</div><div class="grammar-es">2</div></div>
+        <div class="grammar-item"><div class="grammar-du">Maigua</div><div class="grammar-es">3</div></div>
+        <div class="grammar-item"><div class="grammar-du">Makegua</div><div class="grammar-es">4</div></div>
+        <div class="grammar-item"><div class="grammar-du">Ujtsigua</div><div class="grammar-es">5</div></div>
+        <div class="grammar-item"><div class="grammar-du">Tainua</div><div class="grammar-es">6</div></div>
+        <div class="grammar-item"><div class="grammar-du">Kugua</div><div class="grammar-es">7</div></div>
+        <div class="grammar-item"><div class="grammar-du">Ambígua</div><div class="grammar-es">8</div></div>
+        <div class="grammar-item"><div class="grammar-du">Ijkagua</div><div class="grammar-es">9</div></div>
+        <div class="grammar-item"><div class="grammar-du">Ugua</div><div class="grammar-es">10</div></div>
+        <div class="grammar-item"><div class="grammar-du">Ingul ugua ugua</div><div class="grammar-es">100</div></div>
+      </div>
+    </div>
+
+    <div class="grammar-section">
+      <div class="grammar-title">⏰ Adverbios de tiempo</div>
+      <div class="grammar-grid">
+        <div class="grammar-item"><div class="grammar-du">Shigi</div><div class="grammar-es">Mañana</div></div>
+        <div class="grammar-item"><div class="grammar-du">Shaie</div><div class="grammar-es">Ayer</div></div>
+        <div class="grammar-item"><div class="grammar-du">Iwa</div><div class="grammar-es">Ahora / Hoy</div></div>
+        <div class="grammar-item"><div class="grammar-du">Shea</div><div class="grammar-es">Noche</div></div>
+        <div class="grammar-item"><div class="grammar-du">Shigi</div><div class="grammar-es">Mañana (hora)</div></div>
+        <div class="grammar-item"><div class="grammar-du">Kewa</div><div class="grammar-es">Dentro de un momento</div></div>
+        <div class="grammar-item"><div class="grammar-du">Awandzi</div><div class="grammar-es">Después</div></div>
+        <div class="grammar-item"><div class="grammar-du">Shoen</div><div class="grammar-es">Antes</div></div>
+        <div class="grammar-item"><div class="grammar-du">Mogi</div><div class="grammar-es">Pasado mañana</div></div>
+        <div class="grammar-item"><div class="grammar-du">Dzuinkuna</div><div class="grammar-es">Medio día</div></div>
+      </div>
+    </div>
+
+    <div class="grammar-section">
+      <div class="grammar-title">📍 Adverbios de lugar</div>
+      <div class="grammar-grid">
+        <div class="grammar-item"><div class="grammar-du">Umba</div><div class="grammar-es">Aquí</div></div>
+        <div class="grammar-item"><div class="grammar-du">Nawaka</div><div class="grammar-es">Lejos</div></div>
+        <div class="grammar-item"><div class="grammar-du">Lami</div><div class="grammar-es">Cerca</div></div>
+        <div class="grammar-item"><div class="grammar-du">Bigu</div><div class="grammar-es">Donde</div></div>
+        <div class="grammar-item"><div class="grammar-du">Nonka</div><div class="grammar-es">Izquierda</div></div>
+        <div class="grammar-item"><div class="grammar-du">Zunka</div><div class="grammar-es">Derecha</div></div>
+        <div class="grammar-item"><div class="grammar-du">Kawana</div><div class="grammar-es">Debajo</div></div>
+        <div class="grammar-item"><div class="grammar-du">Shakaina</div><div class="grammar-es">Hacia arriba</div></div>
+        <div class="grammar-item"><div class="grammar-du">Ukunarga</div><div class="grammar-es">Afuera</div></div>
+        <div class="grammar-item"><div class="grammar-du">Urragurga</div><div class="grammar-es">Dentro de la casa</div></div>
+      </div>
+    </div>
+
+    <div class="grammar-section">
+      <div class="grammar-title">📋 Conjugación verbal: Caminar (Nala)</div>
+      <table class="verb-table">
+        <thead>
+          <tr>
+            <th>Pronombre</th>
+            <th>Presente</th>
+            <th>Pasado</th>
+            <th>Futuro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Ra (yo)</td><td>Naiuga</td><td>Naia</td><td>Naiunga</td></tr>
+          <tr><td>Ma (tú)</td><td>Manaiuncka</td><td>Manaia munyunca</td><td>Munaiunkoa</td></tr>
+          <tr><td>Na (él)</td><td>Neka</td><td>Naiunka</td><td>Naiunka</td></tr>
+          <tr><td>Nabi (nosotros)</td><td>Naiunte</td><td>Naia</td><td>Munaiunkaoa</td></tr>
+          <tr><td>Mabi (ustedes)</td><td>Nai</td><td>Naia</td><td>Munaiunkoa</td></tr>
+          <tr><td>Ijkuna (ellos)</td><td>Nai</td><td>Dzinaia</td><td>Dzinaiunko</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grammar-section">
+      <div class="grammar-title">📌 Reglas gramaticales clave</div>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div class="grammar-item" style="grid-column:unset;">
+          <div class="grammar-es">✅ <strong style="color:var(--oro);">Plural:</strong> Se forma agregando <em style="color:var(--oro2);">-nyina</em> al sustantivo. Ej: uski → uskinyina</div>
+        </div>
+        <div class="grammar-item" style="grid-column:unset;">
+          <div class="grammar-es">✅ <strong style="color:var(--oro);">Artículo:</strong> Se agrega <em style="color:var(--oro2);">zhaga</em>. Ej: kunsi zhaga (el perro)</div>
+        </div>
+        <div class="grammar-item" style="grid-column:unset;">
+          <div class="grammar-es">✅ <strong style="color:var(--oro);">Aumentativo:</strong> Se agrega <em style="color:var(--oro2);">shukuega</em>. Ej: kunsi shukuega (el perro grande)</div>
+        </div>
+        <div class="grammar-item" style="grid-column:unset;">
+          <div class="grammar-es">✅ <strong style="color:var(--oro);">Diminutivo:</strong> Se agrega terminación <em style="color:var(--oro2);">nguma</em>. Ej: kunsinguma (el perrito)</div>
+        </div>
+        <div class="grammar-item" style="grid-column:unset;">
+          <div class="grammar-es">✅ <strong style="color:var(--oro);">La letra F:</strong> No existe en Dumuna</div>
+        </div>
+        <div class="grammar-item" style="grid-column:unset;">
+          <div class="grammar-es">✅ <strong style="color:var(--oro);">La C sola:</strong> Se reemplaza por K</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== AGREGAR ===================== -->
+<div id="panel-agregar" class="panel">
+  <div class="card">
+    <div class="card-title">➕ Contribuir al Diccionario Ashekan Dzina</div>
+    <div class="add-form-grid">
+      <div class="form-field">
+        <label class="form-label">Español *</label>
+        <input class="form-input" type="text" id="new-es" placeholder="Ej: estrella">
+      </div>
+      <div class="form-field">
+        <label class="form-label">Dumuna *</label>
+        <input class="form-input" type="text" id="new-du" placeholder="Ej: Zhandumaia">
+      </div>
+      <div class="form-field">
+        <label class="form-label">Categoría</label>
+        <select class="form-select" id="new-cat">
+          <option value="saludos">Saludos y Expresiones</option>
+          <option value="naturaleza">Naturaleza</option>
+          <option value="familia">Familia</option>
+          <option value="cuerpo">Cuerpo humano</option>
+          <option value="animales">Animales</option>
+          <option value="aves">Aves</option>
+          <option value="plantas">Plantas</option>
+          <option value="insectos">Insectos</option>
+          <option value="numeros">Números</option>
+          <option value="verbos">Verbos</option>
+          <option value="adverbios">Adverbios</option>
+          <option value="sustantivos">Sustantivos</option>
+          <option value="adjetivos">Adjetivos</option>
+          <option value="general">General</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Pronunciación</label>
+        <input class="form-input" type="text" id="new-pron" placeholder="Ej: zhan-du-MAI-a">
+      </div>
+      <div class="form-field" style="grid-column:1/-1;">
+        <label class="form-label">Nota o contexto de uso</label>
+        <textarea class="form-textarea" id="new-note" placeholder="Contexto cultural, sinónimos, observaciones..."></textarea>
+      </div>
+      <button class="add-btn" onclick="addWord()">🌿 Agregar al Diccionario</button>
+      <div class="success-flash" id="success-flash">✅ ¡Palabra agregada al diccionario Ashekan Dzina!</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📝 Palabras añadidas en esta sesión</div>
+    <div id="session-words" style="font-size:13px; color:rgba(245,234,208,0.4); font-style:italic;">
+      Aún no has añadido palabras.
+    </div>
+  </div>
+</div>
+
+</div><!-- end .wrap -->
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-book-title">📖 Bunguing̃uma We Kunzha Kuhtshihka — Diccionario Dumuna · 2007</div>
+  <div class="authors-row">
+    <div class="author-block">
+      <div class="author-role">Autora Principal · Docente Bilingüe Wiwa</div>
+      <div class="author-name-du" style="font-size:18px; color:var(--oro2);">FIDELINA MALO ALONSO</div>
+    </div>
+  </div>
+  <div class="footer-note">
+    Organización Wiwa Yugumaiun Bunkuanarua Tairona "OWYBT" · San Juan del Cesar, La Guajira, Colombia<br>
+    Coordinación: Magíster Rebeca Díaz Oñate · Revisión lingüística: José Agustín Malo Alonso
+  </div>
+
+  <div class="footer-logo">
+    <img src="data:image/png;base64,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" alt="Logo Diccionario Dumuna" class="footer-logo-img">
+  </div>
+</footer>
+
+<div class="notif" id="notif"></div>
+
+<script>
+// =====================================================================
+// DICCIONARIO OFICIAL — extraído del PDF Ashekan Dzina 2007
+// =====================================================================
+const BASE_DICT = [
+  // SALUDOS Y EXPRESIONES
+  {du:'Zungui', es:'buenas', cat:'saludos'},
+  {du:'Zhamunuku', es:'hola', cat:'saludos'},
+  {du:'Zungui unzhina munukui', es:'buenas como esta', cat:'saludos'},
+  {du:'Umba kujte', es:'aquí sentado', cat:'saludos'},
+  {du:'Umba te', es:'aquí parado', cat:'saludos'},
+  {du:'Umba gaga', es:'aquí acostado', cat:'saludos'},
+  {du:'Zungui umba zume', es:'aquí bien', cat:'saludos'},
+  {du:'Umzhina shetana', es:'buenas tardes', cat:'saludos'},
+  {du:'Umzhina dzui naiu', es:'como ha pasado el día', cat:'saludos'},
+  {du:'Umzhina dzui mintunu', es:'como amanece', cat:'saludos'},
+  {du:'Umzhina dzui maintuno', es:'como amanecieron', cat:'saludos'},
+  {du:'Unzhina she naiu', es:'buenas noches', cat:'saludos'},
+  {du:'Biu zhaneka zhanu', es:'que hora es', cat:'saludos'},
+  {du:'Unzhina munukui', es:'como están', cat:'saludos'},
+  {du:'Unzhina munukuie', es:'como le ha ido', cat:'saludos'},
+  {du:'Naiva au', es:'chao adiós', cat:'saludos'},
+  {du:'Naiuga', es:'me voy', cat:'saludos'},
+  {du:'Nekuzhi', es:'vámonos', cat:'saludos'},
+  {du:'Zhiwa', es:'hasta', cat:'saludos'},
+  {du:'Zhiwa zhigi', es:'hasta mañana', cat:'saludos'},
+  {du:'Zhiwa buie', es:'hasta pronto', cat:'saludos'},
+  {du:'Zhiwa mogi', es:'hasta pasado mañana', cat:'saludos'},
+  {du:'Zhiwa kewo', es:'hasta ahorita regreso', cat:'saludos'},
+  {du:'Zhiwa umbo', es:'hasta aquí', cat:'saludos'},
+  {du:'Nabi kungui saja nunkurra', es:'nosotros todos somos indígenas', cat:'saludos'},
+  {du:'Nabi geganba kuaguna', es:'nosotros vivimos en la sierra', cat:'saludos'},
+  {du:'Nabi zen zhingunguzhi', es:'nosotros estamos contentos', cat:'saludos'},
+
+  // NATURALEZA
+  {du:'Dzira', es:'agua', cat:'naturaleza'},
+  {du:'Dziwi', es:'lluvia', cat:'naturaleza'},
+  {du:'Dyui', es:'sol', cat:'naturaleza'},
+  {du:'Gega', es:'sierra nevada páramo', cat:'naturaleza'},
+  {du:'Kanguma', es:'tierra', cat:'naturaleza'},
+  {du:'Kantsinki', es:'cielo', cat:'naturaleza'},
+  {du:'Saga', es:'luna mujer sabia', cat:'naturaleza'},
+  {du:'Dzibu', es:'mar', cat:'naturaleza'},
+  {du:'Moña', es:'nube', cat:'naturaleza'},
+  {du:'Zoma', es:'montaña rastrojo', cat:'naturaleza'},
+  {du:'Shea', es:'noche', cat:'naturaleza'},
+  {du:'Zhandumaia', es:'estrella', cat:'naturaleza'},
+  {du:'Zhandumaya', es:'lucero', cat:'naturaleza'},
+  {du:'Ge', es:'candela fuego', cat:'naturaleza'},
+  {du:'Kumesa', es:'arco iris', cat:'naturaleza'},
+  {du:'Burta', es:'brisa viento', cat:'naturaleza'},
+  {du:'Sutu', es:'humo', cat:'naturaleza'},
+  {du:'Igisi', es:'granizo', cat:'naturaleza'},
+  {du:'Shoma', es:'flor tradición', cat:'naturaleza'},
+  {du:'Sawa', es:'grano semilla', cat:'naturaleza'},
+  {du:'Inguna', es:'camino', cat:'naturaleza'},
+  {du:'Tokujshui', es:'río', cat:'naturaleza'},
+  {du:'Dukujshui', es:'río', cat:'naturaleza'},
+  {du:'Setuhkua', es:'cabecera donde nace el río', cat:'naturaleza'},
+  {du:'Kunkuna', es:'monte bosque', cat:'naturaleza'},
+  {du:'Tuhkula', es:'verde', cat:'naturaleza'},
+  {du:'Toos', es:'oscuro', cat:'naturaleza'},
+  {du:'Unzhu', es:'arena', cat:'naturaleza'},
+  {du:'Selarrua', es:'un cerro sagrado', cat:'naturaleza'},
+
+  // FAMILIA
+  {du:'Abu', es:'mamá', cat:'familia'},
+  {du:'Ade', es:'papá', cat:'familia'},
+  {du:'Ade tuna', es:'abuelo', cat:'familia'},
+  {du:'Abutuna', es:'abuela', cat:'familia'},
+  {du:'Kawa', es:'familia', cat:'familia'},
+  {du:'Guma', es:'hijo', cat:'familia'},
+  {du:'Soma', es:'niña', cat:'familia'},
+  {du:'Gaya', es:'muchacha joven adolescente', cat:'familia'},
+  {du:'Mena', es:'mujer', cat:'familia'},
+  {du:'Kuima', es:'hombre', cat:'familia'},
+  {du:'Terrua', es:'hombre', cat:'familia'},
+  {du:'Noma', es:'cuñado', cat:'familia'},
+  {du:'Ranzhema', es:'cuñado', cat:'familia'},
+  {du:'Nagua', es:'ex marido', cat:'familia'},
+  {du:'Shamaia', es:'viuda', cat:'familia'},
+  {du:'Asi', es:'tía', cat:'familia'},
+  {du:'Atu', es:'tío', cat:'familia'},
+  {du:'Akuneka', es:'madrastra', cat:'familia'},
+  {du:'Saja', es:'indio indígena', cat:'familia'},
+
+  // CUERPO HUMANO
+  {du:'Uma', es:'ojo', cat:'cuerpo'},
+  {du:'Gula', es:'mano brazo', cat:'cuerpo'},
+  {du:'Shamunku', es:'cabeza', cat:'cuerpo'},
+  {du:'Kujkua', es:'oreja', cat:'cuerpo'},
+  {du:'Sha', es:'cabello', cat:'cuerpo'},
+  {du:'Bunukjka', es:'rodilla', cat:'cuerpo'},
+  {du:'Dujkhna', es:'pierna', cat:'cuerpo'},
+  {du:'Kujsa', es:'pie', cat:'cuerpo'},
+  {du:'Kusa zhiwa', es:'dedos de los pies', cat:'cuerpo'},
+  {du:'Gula shuy', es:'dedo pulgar', cat:'cuerpo'},
+  {du:'Gula zhiwi', es:'dedo meñique', cat:'cuerpo'},
+  {du:'Gulozhiwa', es:'dedo', cat:'cuerpo'},
+  {du:'Guisinu', es:'codo', cat:'cuerpo'},
+  {du:'Kuirrua', es:'hombro', cat:'cuerpo'},
+  {du:'Kuinzi', es:'axila', cat:'cuerpo'},
+  {du:'Ushina', es:'espalda columna', cat:'cuerpo'},
+  {du:'Shinshuhkula', es:'columna vertebral', cat:'cuerpo'},
+  {du:'Tamkuna', es:'barriga estómago', cat:'cuerpo'},
+  {du:'Muna', es:'ombligo', cat:'cuerpo'},
+  {du:'Gashina', es:'intestino tripa', cat:'cuerpo'},
+  {du:'Calabirru', es:'pulmones', cat:'cuerpo'},
+  {du:'Duabiga', es:'corazón', cat:'cuerpo'},
+  {du:'Gana', es:'pescuezo tórax', cat:'cuerpo'},
+  {du:'Kkhka', es:'diente', cat:'cuerpo'},
+  {du:'Kujkula', es:'hueso', cat:'cuerpo'},
+  {du:'Shiwana', es:'vena', cat:'cuerpo'},
+  {du:'Kongula', es:'lengua', cat:'cuerpo'},
+  {du:'Kujkulia', es:'saliva', cat:'cuerpo'},
+  {du:'Siwa', es:'orina', cat:'cuerpo'},
+  {du:'Puzhinzhana', es:'fiebre', cat:'cuerpo'},
+  {du:'Namsi', es:'dolor', cat:'cuerpo'},
+
+  // ANIMALES
+  {du:'Dumaga', es:'tigre', cat:'animales'},
+  {du:'Kunsi', es:'perro', cat:'animales'},
+  {du:'Guma', es:'culebra', cat:'animales'},
+  {du:'Mobokula', es:'culebra boa', cat:'animales'},
+  {du:'Guazirruma', es:'culebra de Patoquilla', cat:'animales'},
+  {du:'Musa', es:'iguana', cat:'animales'},
+  {du:'Du', es:'armadillo', cat:'animales'},
+  {du:'Ibulu', es:'rana', cat:'animales'},
+  {du:'Tugurra', es:'rana', cat:'animales'},
+  {du:'Mojkui', es:'sapo', cat:'animales'},
+  {du:'Kuindumaga', es:'ardilla', cat:'animales'},
+  {du:'Tdzikui', es:'ratón', cat:'animales'},
+  {du:'Garruma', es:'ratón', cat:'animales'},
+  {du:'Paka', es:'vaca', cat:'animales'},
+  {du:'Pakila', es:'saíno', cat:'animales'},
+  {du:'Purcu', es:'cerdo', cat:'animales'},
+  {du:'Shekunogwa', es:'burro', cat:'animales'},
+  {du:'Shenkankawa', es:'caballo', cat:'animales'},
+  {du:'Waliwali', es:'danta', cat:'animales'},
+  {du:'Munsigula', es:'murciélago', cat:'animales'},
+  {du:'Munkua', es:'araña', cat:'animales'},
+  {du:'Zenze', es:'oso', cat:'animales'},
+  {du:'Munshallu', es:'zorro', cat:'animales'},
+  {du:'Washa', es:'mapurito', cat:'animales'},
+  {du:'Asaiku', es:'yeque', cat:'animales'},
+  {du:'Usinguirra', es:'cangrejo', cat:'animales'},
+  {du:'Narru', es:'camaleón', cat:'animales'},
+  {du:'Nundumaga', es:'perrito de agua', cat:'animales'},
+
+  // AVES
+  {du:'Abi', es:'cocinera (ave)', cat:'aves'},
+  {du:'Bungu', es:'buo', cat:'aves'},
+  {du:'Dunzisi', es:'paloma mona', cat:'aves'},
+  {du:'Duka', es:'paloma collarejo', cat:'aves'},
+  {du:'Dujunku', es:'paloma de la montaña', cat:'aves'},
+  {du:'Sibi', es:'lechuza', cat:'aves'},
+  {du:'Gomula', es:'tucán guasalé verde', cat:'aves'},
+  {du:'Gañulu', es:'papagayo', cat:'aves'},
+  {du:'Sheshulu', es:'pájaro negro', cat:'aves'},
+  {du:'Shikwa', es:'pájaro de adivino', cat:'aves'},
+  {du:'Sinduli', es:'chupaflor', cat:'aves'},
+  {du:'Sirika', es:'gavilán jabao', cat:'aves'},
+  {du:'Suku', es:'carpintero pájaro', cat:'aves'},
+  {du:'Suzhi', es:'pájaro', cat:'aves'},
+  {du:'Tomishihki', es:'toche', cat:'aves'},
+  {du:'Ulami', es:'pava', cat:'aves'},
+  {du:'Wanawana', es:'rey zamuro', cat:'aves'},
+  {du:'Wanko', es:'guacao', cat:'aves'},
+  {du:'Magurra', es:'cataneja', cat:'aves'},
+  {du:'Nujpua', es:'gavilán buitre', cat:'aves'},
+  {du:'Dzona', es:'garza', cat:'aves'},
+  {du:'Duanabojo', es:'alcatraz', cat:'aves'},
+  {du:'Nuluka', es:'oropel', cat:'aves'},
+  {du:'Sankui', es:'cotorro', cat:'aves'},
+  {du:'Sasawa', es:'periquito', cat:'aves'},
+  {du:'Ningewa', es:'cotorra', cat:'aves'},
+
+  // PLANTAS
+  {du:'Abona', es:'guama', cat:'plantas'},
+  {du:'Akujchi', es:'aguacate', cat:'plantas'},
+  {du:'Biskula', es:'higuerón', cat:'plantas'},
+  {du:'Burruno', es:'algodón', cat:'plantas'},
+  {du:'Irrugua', es:'yuca', cat:'plantas'},
+  {du:'Ishta', es:'guandú', cat:'plantas'},
+  {du:'Jina', es:'helecho', cat:'plantas'},
+  {du:'Kalusi', es:'caña', cat:'plantas'},
+  {du:'Kanko', es:'higueroncito', cat:'plantas'},
+  {du:'Kuntana', es:'plátano', cat:'plantas'},
+  {du:'Mesu', es:'batata', cat:'plantas'},
+  {du:'Mewa', es:'guaimarro', cat:'plantas'},
+  {du:'Mun', es:'jobo', cat:'plantas'},
+  {du:'Mundugua', es:'auyama', cat:'plantas'},
+  {du:'Munmunawa', es:'manzana', cat:'plantas'},
+  {du:'Newa', es:'ají arracacha', cat:'plantas'},
+  {du:'Shitunua', es:'maracuyá', cat:'plantas'},
+  {du:'Turruma', es:'papa', cat:'plantas'},
+  {du:'Zhangu', es:'caracolí', cat:'plantas'},
+  {du:'Shoma', es:'flor', cat:'plantas'},
+  {du:'Abimaia', es:'ayo', cat:'plantas'},
+  {du:'Bigurra', es:'piña', cat:'plantas'},
+  {du:'Genkula', es:'guayabo', cat:'plantas'},
+
+  // INSECTOS
+  {du:'Bunzisi', es:'avispa', cat:'insectos'},
+  {du:'Dujkui', es:'carcoma', cat:'insectos'},
+  {du:'Dujtu', es:'cocuyo', cat:'insectos'},
+  {du:'Durru', es:'comejen garrapata', cat:'insectos'},
+  {du:'Dzin', es:'hormiga culona', cat:'insectos'},
+  {du:'Isakubi', es:'mariposa', cat:'insectos'},
+  {du:'Kada', es:'cucaracha', cat:'insectos'},
+  {du:'Kanzha', es:'cucarrón cachón', cat:'insectos'},
+  {du:'Kuimbo', es:'hormiga boba', cat:'insectos'},
+  {du:'Mogua', es:'lombriz', cat:'insectos'},
+  {du:'Mujtsi', es:'pulga', cat:'insectos'},
+  {du:'Sanze', es:'piojo', cat:'insectos'},
+  {du:'Sesu', es:'saltamonte', cat:'insectos'},
+  {du:'Sirika', es:'luciérnaga', cat:'insectos'},
+  {du:'Tun', es:'mosquito', cat:'insectos'},
+  {du:'Usangula', es:'sancudo', cat:'insectos'},
+  {du:'Zeku', es:'alacrán', cat:'insectos'},
+  {du:'Zerranzerra', es:'escorpión', cat:'insectos'},
+  {du:'Zhi', es:'gusano', cat:'insectos'},
+  {du:'Zhinzhirin', es:'chicharra', cat:'insectos'},
+  {du:'Zumbu', es:'gorgojo', cat:'insectos'},
+
+  // NÚMEROS
+  {du:'Shunkua', es:'uno (1)', cat:'numeros'},
+  {du:'Moa', es:'dos (2)', cat:'numeros'},
+  {du:'Maigua', es:'tres (3)', cat:'numeros'},
+  {du:'Makegua', es:'cuatro (4)', cat:'numeros'},
+  {du:'Ujtsigua', es:'cinco (5)', cat:'numeros'},
+  {du:'Tainua', es:'seis (6)', cat:'numeros'},
+  {du:'Kugua', es:'siete (7)', cat:'numeros'},
+  {du:'Ambígua', es:'ocho (8)', cat:'numeros'},
+  {du:'Ijkagua', es:'nueve (9)', cat:'numeros'},
+  {du:'Ugua', es:'diez (10)', cat:'numeros'},
+  {du:'Ingul ugua ugua', es:'cien (100)', cat:'numeros'},
+
+  // VERBOS
+  {du:'Akali', es:'tocar', cat:'verbos'},
+  {du:'Alzhi', es:'desbaratar', cat:'verbos'},
+  {du:'Amazhi', es:'torcer', cat:'verbos'},
+  {du:'Andovi', es:'gustar', cat:'verbos'},
+  {du:'Angabi', es:'escribir', cat:'verbos'},
+  {du:'Angai', es:'beber', cat:'verbos'},
+  {du:'Anzizi', es:'chupar', cat:'verbos'},
+  {du:'Apana', es:'agarrar', cat:'verbos'},
+  {du:'Apazhi', es:'garrotear', cat:'verbos'},
+  {du:'Arrushi', es:'subir', cat:'verbos'},
+  {du:'Ashaiun', es:'hablar', cat:'verbos'},
+  {du:'Asuizi', es:'ordeñar', cat:'verbos'},
+  {du:'Atushi', es:'lavar', cat:'verbos'},
+  {du:'Azhi', es:'sembrar', cat:'verbos'},
+  {du:'Bizhi', es:'pasear', cat:'verbos'},
+  {du:'Bo zhakucha', es:'alumbrar embarrar', cat:'verbos'},
+  {du:'Bungo bunanka', es:'nacer', cat:'verbos'},
+  {du:'Bushi', es:'moler', cat:'verbos'},
+  {du:'Dugua', es:'cocinar', cat:'verbos'},
+  {du:'Dumegubi', es:'jugar', cat:'verbos'},
+  {du:'Duzhi', es:'cocinar', cat:'verbos'},
+  {du:'Gabi', es:'construir hacer', cat:'verbos'},
+  {du:'Gashi', es:'quemar', cat:'verbos'},
+  {du:'Geka', es:'entregar', cat:'verbos'},
+  {du:'Go', es:'construir hacer', cat:'verbos'},
+  {du:'Guazhi', es:'matar', cat:'verbos'},
+  {du:'Guishi', es:'raspar', cat:'verbos'},
+  {du:'Gumapesha', es:'abrir', cat:'verbos'},
+  {du:'Gunkujte', es:'cerrar', cat:'verbos'},
+  {du:'Gushi', es:'coger moler', cat:'verbos'},
+  {du:'Ibishi', es:'calentar', cat:'verbos'},
+  {du:'Ibuneka', es:'trabajar', cat:'verbos'},
+  {du:'Inatsui', es:'esperar', cat:'verbos'},
+  {du:'Iuzhi', es:'bajar', cat:'verbos'},
+  {du:'Jina', es:'crecer', cat:'verbos'},
+  {du:'Jomun', es:'bañar', cat:'verbos'},
+  {du:'Junsha', es:'secar', cat:'verbos'},
+  {du:'Kiut', es:'brincar saltar', cat:'verbos'},
+  {du:'Koshi', es:'pelear', cat:'verbos'},
+  {du:'Kuai', es:'vivir', cat:'verbos'},
+  {du:'Kujkana', es:'llamar', cat:'verbos'},
+  {du:'Kulun', es:'bailar', cat:'verbos'},
+  {du:'Kushi', es:'pangar', cat:'verbos'},
+  {du:'Kuunzhishi', es:'gritar', cat:'verbos'},
+  {du:'Kuwan', es:'dormir', cat:'verbos'},
+  {du:'Mawun', es:'llorar', cat:'verbos'},
+  {du:'Nai', es:'ir', cat:'verbos'},
+  {du:'Nala', es:'caminar', cat:'verbos'},
+  {du:'Nanzhun', es:'soñar', cat:'verbos'},
+  {du:'Nushi', es:'oír', cat:'verbos'},
+  {du:'Peshi', es:'recoger', cat:'verbos'},
+  {du:'Rigana', es:'pedir regalar', cat:'verbos'},
+  {du:'Shazhi', es:'pintar', cat:'verbos'},
+  {du:'Shindzi', es:'aprender', cat:'verbos'},
+  {du:'Shizhi', es:'preguntar', cat:'verbos'},
+  {du:'Shuishi', es:'soplar', cat:'verbos'},
+  {du:'Tuun', es:'ver mirar', cat:'verbos'},
+  {du:'Uguari', es:'querer', cat:'verbos'},
+  {du:'Ugungo', es:'amar', cat:'verbos'},
+  {du:'Waga', es:'medir', cat:'verbos'},
+  {du:'Washi', es:'pesar', cat:'verbos'},
+  {du:'Wida', es:'morir', cat:'verbos'},
+  {du:'Wusisi', es:'botar', cat:'verbos'},
+  {du:'Zhamai', es:'cantar', cat:'verbos'},
+  {du:'Zhan', es:'comer', cat:'verbos'},
+  {du:'Zhanduzhi', es:'limpiar', cat:'verbos'},
+  {du:'Zhanga', es:'robar', cat:'verbos'},
+  {du:'Zhasasi', es:'cazar', cat:'verbos'},
+  {du:'Zhinbuzhi', es:'mover', cat:'verbos'},
+  {du:'Zhingeshi', es:'matrimonio', cat:'verbos'},
+  {du:'Zhuazhi', es:'correr', cat:'verbos'},
+  {du:'Zhunkunaama', es:'besar', cat:'verbos'},
+
+  // PRONOMBRES
+  {du:'Ra', es:'yo', cat:'pronombres'},
+  {du:'Ma', es:'tú', cat:'pronombres'},
+  {du:'Na', es:'él ella', cat:'pronombres'},
+  {du:'Nabi', es:'nosotros', cat:'pronombres'},
+  {du:'Mabi', es:'ustedes', cat:'pronombres'},
+  {du:'Ijkuna', es:'ellos', cat:'pronombres'},
+  {du:'Ranzhe', es:'mío', cat:'pronombres'},
+  {du:'Manzhe', es:'tuyo', cat:'pronombres'},
+  {du:'Nabinzhe', es:'nuestro', cat:'pronombres'},
+  {du:'Ijkunanzhe', es:'de ellos', cat:'pronombres'},
+
+  // ADVERBIOS
+  {du:'Bigu', es:'donde', cat:'adverbios'},
+  {du:'Lami', es:'cerca', cat:'adverbios'},
+  {du:'Nawaka', es:'lejos', cat:'adverbios'},
+  {du:'Umba', es:'aquí', cat:'adverbios'},
+  {du:'Nonka', es:'izquierda', cat:'adverbios'},
+  {du:'Zunka', es:'derecha', cat:'adverbios'},
+  {du:'Kawana', es:'debajo', cat:'adverbios'},
+  {du:'Shakaina', es:'hacia arriba', cat:'adverbios'},
+  {du:'Ukunarga', es:'afuera', cat:'adverbios'},
+  {du:'Urragurga', es:'dentro de la casa', cat:'adverbios'},
+  {du:'Nashoite', es:'delante', cat:'adverbios'},
+  {du:'Ushinarga', es:'detrás', cat:'adverbios'},
+  {du:'Shigi', es:'mañana', cat:'adverbios'},
+  {du:'Shaie', es:'ayer', cat:'adverbios'},
+  {du:'Iwa', es:'ahora hoy', cat:'adverbios'},
+  {du:'Shea', es:'noche', cat:'adverbios'},
+  {du:'Awandzi', es:'después', cat:'adverbios'},
+  {du:'Shoen', es:'antes', cat:'adverbios'},
+  {du:'Mogi', es:'pasado mañana', cat:'adverbios'},
+  {du:'Kewa', es:'dentro de un momento', cat:'adverbios'},
+  {du:'Aguma', es:'más', cat:'adverbios'},
+  {du:'Kuminsha', es:'mucho', cat:'adverbios'},
+  {du:'Ningua', es:'nada', cat:'adverbios'},
+  {du:'Wun', es:'menos', cat:'adverbios'},
+  {du:'Sa', es:'verdad derecho', cat:'adverbios'},
+
+  // ADJETIVOS
+  {du:'Mujkushi', es:'negro', cat:'adjetivos'},
+  {du:'Umbumshi', es:'blanco', cat:'adjetivos'},
+  {du:'Unzisi', es:'rojo', cat:'adjetivos'},
+  {du:'Ujtsihk', es:'verde', cat:'adjetivos'},
+  {du:'Suntashi', es:'color azul', cat:'adjetivos'},
+  {du:'Tuhkula', es:'verde', cat:'adjetivos'},
+  {du:'Tumkuega', es:'amarillo', cat:'adjetivos'},
+  {du:'Tumunshi', es:'naranjado', cat:'adjetivos'},
+  {du:'Tunkuega', es:'gris', cat:'adjetivos'},
+  {du:'Zukuego', es:'bonito', cat:'adjetivos'},
+  {du:'Wantujkui', es:'feo', cat:'adjetivos'},
+  {du:'Rinuku', es:'alto', cat:'adjetivos'},
+  {du:'Zhinuka', es:'largo alto', cat:'adjetivos'},
+  {du:'Zhurra', es:'delgado', cat:'adjetivos'},
+  {du:'Kumatuna', es:'guapo', cat:'adjetivos'},
+  {du:'Malurru', es:'maduro', cat:'adjetivos'},
+  {du:'Jana', es:'seco', cat:'adjetivos'},
+  {du:'Jina', es:'crecido', cat:'adjetivos'},
+  {du:'Sumunka', es:'suave', cat:'adjetivos'},
+  {du:'Zukuego', es:'bonito', cat:'adjetivos'},
+  {du:'Zunka', es:'bueno', cat:'adjetivos'},
+
+  // SUSTANTIVOS GENERALES
+  {du:'Duabiga', es:'corazón', cat:'sustantivos'},
+  {du:'Ge', es:'candela', cat:'sustantivos'},
+  {du:'Kongula', es:'lengua', cat:'sustantivos'},
+  {du:'Kuimangui', es:'trueno', cat:'sustantivos'},
+  {du:'Mujkusala', es:'ropa', cat:'sustantivos'},
+  {du:'Shamarra', es:'vestido', cat:'sustantivos'},
+  {du:'Sherra', es:'cuchillo', cat:'sustantivos'},
+  {du:'Shu', es:'calabazo', cat:'sustantivos'},
+  {du:'Suzu', es:'mochila', cat:'sustantivos'},
+  {du:'Togua', es:'totuma', cat:'sustantivos'},
+  {du:'Tokujsibu', es:'totumita para beber agua', cat:'sustantivos'},
+  {du:'Tsui', es:'barro', cat:'sustantivos'},
+  {du:'Buku', es:'olla de barro', cat:'sustantivos'},
+  {du:'Bu', es:'chinchorro', cat:'sustantivos'},
+  {du:'Bun', es:'cenisa', cat:'sustantivos'},
+  {du:'Lazhemena', es:'amor', cat:'sustantivos'},
+  {du:'Lema', es:'carne', cat:'sustantivos'},
+  {du:'Nungu', es:'sal', cat:'sustantivos'},
+  {du:'Shinzhomo', es:'libro', cat:'sustantivos'},
+  {du:'Ingina', es:'piedra', cat:'sustantivos'},
+  {du:'Dumuna', es:'idioma frailejon', cat:'sustantivos'},
+  {du:'Gunama', es:'comunidad', cat:'sustantivos'},
+  {du:'Isuama', es:'pueblo sitio sagrado', cat:'sustantivos'},
+  {du:'Dzitkwanana', es:'comunidades', cat:'sustantivos'},
+  {du:'Serankua', es:'poderoso de cielo y tierra', cat:'sustantivos'},
+  {du:'Seukukui', es:'hermanito padre de los seres vivos', cat:'sustantivos'},
+  {du:'Kuinta', es:'cuenta', cat:'sustantivos'},
+  {du:'Suwa', es:'grano', cat:'sustantivos'},
+  {du:'Zhanduna', es:'semilla', cat:'sustantivos'},
+  {du:'Guama', es:'consejo', cat:'sustantivos'},
+  {du:'Gayama', es:'trabajo tradicional de la mujer', cat:'sustantivos'},
+];
+
+// =====================================================================
+// FRASES OFICIALES
+// =====================================================================
+const PHRASES = [
+  {
+    cat:'🌅 Saludos del día',
+    items:[
+      {es:'Hola', du:'Zhamunuku'},
+      {es:'Buenas', du:'Zungui'},
+      {es:'Buenas tardes', du:'Umzhina shetana'},
+      {es:'Buenas noches', du:'Unzhina she naiu'},
+      {es:'Cómo amanece', du:'Umzhina dzui mintunu'},
+      {es:'Cómo han pasado el día', du:'Umzhina dzui naiu'},
+      {es:'Cómo están', du:'Unzhina munukui'},
+      {es:'Aquí bien', du:'Zungui umba zume'},
+      {es:'Me voy / Adiós', du:'Naiva au'},
+      {es:'Vámonos', du:'Nekuzhi'},
+      {es:'Hasta mañana', du:'Zhiwa zhigi'},
+      {es:'Hasta pronto', du:'Zhiwa buie'},
+    ]
+  },
+  {
+    cat:'🏔️ Identidad Wiwa',
+    items:[
+      {es:'Nosotros todos somos indígenas', du:'Nabi kungui saja nunkurra'},
+      {es:'Nosotros vivimos en la sierra', du:'Nabi geganba kuaguna'},
+      {es:'Nosotros estamos contentos', du:'Nabi zen zhingunguzhi'},
+      {es:'El bosque está lejos', du:'Kunkuna nawaka nuka'},
+      {es:'Por las noches hay mucho frío', du:'Shea kumisha se nansi'},
+    ]
+  },
+  {
+    cat:'📖 Frases del diccionario',
+    items:[
+      {es:'Como yuca', du:'Irrugua zhanga'},
+      {es:'Hoy cultivo frijol', du:'Iwa shihta agunga'},
+      {es:'Esa piedra bonita', du:'Jama ingina zukuega'},
+      {es:'Mujer hila algodón', du:'Mena burruna bushi'},
+      {es:'El perro caza iguana', du:'Kunsi musa soska'},
+      {es:'Nosotros tejemos mochilas', du:'Suzu gokurra'},
+      {es:'Me gusta la carne de ratón', du:'Tsujkuinzhe lema nandunga'},
+      {es:'No aprendemos bien', du:'Zidua shindziun'},
+    ]
+  },
+  {
+    cat:'⏰ Expresiones de tiempo',
+    items:[
+      {es:'Hasta ayer', du:'Zhiwa shoie'},
+      {es:'Hasta pasado mañana', du:'Zhiwa mogi'},
+      {es:'Hasta antier', du:'Zhiwa munzhizhi'},
+      {es:'Hasta aquí', du:'Zhiwa umbo / Zhiwa umba'},
+      {es:'Que hora es', du:'Biu zhaneka zhanu'},
+      {es:'Antes', du:'Shoen'},
+      {es:'Después', du:'Awandzi'},
+      {es:'Medio día', du:'Dzuinkuna'},
+    ]
+  },
+];
+
+// =====================================================================
+// APP
+// =====================================================================
+let dict = loadDict();
+let direction = 'es-du';
+let sessionWords = [];
+
+function loadDict(){
+  try {
+    const s = localStorage.getItem('ashekan_dzina_dict');
+    if(s) return JSON.parse(s);
+  } catch(e){}
+  return [...BASE_DICT];
+}
+
+function saveDict(){
+  try { localStorage.setItem('ashekan_dzina_dict', JSON.stringify(dict)); } catch(e){}
+}
+
+// TABS
+function showTab(name, btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+  btn.classList.add('active');
+  if(name==='diccionario') renderDict();
+  if(name==='frases') renderPhrases();
+}
+
+// TRANSLATOR
+function swapDir(){
+  direction = direction==='es-du' ? 'du-es' : 'es-du';
+  document.getElementById('dir-from').textContent = direction==='es-du'?'Español':'Dumuna';
+  document.getElementById('dir-to').textContent   = direction==='es-du'?'Dumuna':'Español';
+  document.getElementById('label-from').textContent = direction==='es-du'?'🇨🇴 Español':'🏔️ Dumuna';
+  document.getElementById('label-to').textContent   = direction==='es-du'?'🏔️ Dumuna':'🇨🇴 Español';
+  document.getElementById('input-text').value = '';
+  document.getElementById('output-text').value = '';
+  document.getElementById('result-info').textContent = '';
+  document.getElementById('input-text').placeholder =
+    direction==='es-du' ? 'Escribe una palabra en español...' : 'Escribir palabra en Dumuna...';
+}
+
+function liveTranslate(){ translate(); }
+
+function translate(){
+  const raw = document.getElementById('input-text').value.trim();
+  if(!raw){ document.getElementById('output-text').value=''; return; }
+
+  const words = raw.toLowerCase().split(/\s+/);
+  const results=[], missing=[];
+
+  words.forEach(w=>{
+    const clean = w.replace(/[.,!?;:¿¡]/g,'');
+    let match;
+    if(direction==='es-du'){
+      match = dict.find(d=>d.es.toLowerCase()===clean || d.es.toLowerCase().split(/[,\s]+/).includes(clean));
+    } else {
+      match = dict.find(d=>d.du.toLowerCase()===clean);
+    }
+    if(match){
+      results.push(direction==='es-du' ? match.du : match.es);
+    } else {
+      results.push('['+clean+']');
+      missing.push(clean);
+    }
+  });
+
+  document.getElementById('output-text').value = results.join(' ');
+  const info = document.getElementById('result-info');
+  if(missing.length===0){
+    info.className='result-info found';
+    info.textContent='✅ Traducción encontrada en el Diccionario Ashekan Dzina';
+  } else {
+    info.className='result-info notfound';
+    info.textContent='⚠️ No encontradas: '+missing.join(', ')+' — puedes agregarlas en ➕ Agregar';
+  }
+}
+
+function quickTranslate(word){
+  document.getElementById('input-text').value = word;
+  if(direction!=='es-du'){ direction='es-du'; swapDir(); direction='es-du'; }
+  translate();
+}
+
+// DICTIONARY
+function renderDict(){
+  const q = document.getElementById('search-q').value.toLowerCase().trim();
+  const cat = document.getElementById('cat-filter').value;
+
+  let filtered = dict.filter(w=>{
+    const mc = !cat || w.cat===cat;
+    const mq = !q || w.es.toLowerCase().includes(q) || w.du.toLowerCase().includes(q);
+    return mc && mq;
+  });
+
+  document.getElementById('dict-total').textContent = dict.length;
+  document.getElementById('dict-shown').textContent = filtered.length;
+
+  const grid = document.getElementById('dict-grid');
+
+  if(!filtered.length){
+    grid.innerHTML=`<div class="empty-state">No se encontraron palabras para "${q || cat}"</div>`;
+    return;
+  }
+
+  const CAT_COLORS = {
+    saludos:'#c4a020', naturaleza:'#4a8a32', familia:'#c47820',
+    cuerpo:'#c43020', animales:'#8a5010', aves:'#205090',
+    plantas:'#2a7040', insectos:'#6a3080', numeros:'#1a6090',
+    verbos:'#306a6a', adverbios:'#6a6a20', pronombres:'#70204a',
+    sustantivos:'#c46020', adjetivos:'#50308a', general:'#606060'
+  };
+
+  grid.innerHTML = filtered.map(w=>{
+    const es = q ? w.es.replace(new RegExp(`(${q})`, 'gi'), '<mark>$1</mark>') : w.es;
+    const du = q ? w.du.replace(new RegExp(`(${q})`, 'gi'), '<mark>$1</mark>') : w.du;
+    const color = CAT_COLORS[w.cat]||'#806030';
+    return `<div class="dict-card" style="--cat-color:${color};" onclick="speakWord('${w.du}')">
+      <button class="speak-mini" onclick="event.stopPropagation();speakWord('${w.du}')">🔊</button>
+      <div class="dict-dumuna">${du}</div>
+      <div class="dict-spanish">${es}</div>
+      <span class="dict-cat-tag">${w.cat}</span>
+    </div>`;
+  }).join('');
+}
+
+// PHRASES
+function renderPhrases(){
+  document.getElementById('phrases-container').innerHTML = PHRASES.map(g=>`
+    <div class="phrase-group">
+      <div class="phrase-group-title">${g.cat}</div>
+      ${g.items.map(p=>`
+        <div class="phrase-item" onclick="speakWord('${p.du}')">
+          <span class="phrase-es">${p.es}</span>
+          <span class="phrase-du">${p.du}</span>
+          <button class="speak-mini" onclick="event.stopPropagation();speakWord('${p.du}')">🔊</button>
+        </div>`).join('')}
+    </div>`).join('');
+}
+
+// ADD WORD
+function addWord(){
+  const es = document.getElementById('new-es').value.trim().toLowerCase();
+  const du = document.getElementById('new-du').value.trim();
+  const cat = document.getElementById('new-cat').value;
+  const note = document.getElementById('new-note').value.trim();
+
+  if(!es||!du){ showNotif('⚠️ Completa al menos español y Dumuna'); return; }
+  if(dict.find(w=>w.es===es)){ showNotif('⚠️ Esta palabra ya existe'); return; }
+
+  const w = {du, es, cat};
+  if(note) w.note = note;
+  dict.push(w);
+  sessionWords.push(w);
+  saveDict();
+
+  document.getElementById('new-es').value='';
+  document.getElementById('new-du').value='';
+  document.getElementById('new-note').value='';
+
+  const f = document.getElementById('success-flash');
+  f.style.display='block';
+  setTimeout(()=>f.style.display='none', 3000);
+
+  renderSessionWords();
+  showNotif('✅ "'+du+'" agregada al Ashekan Dzina');
+}
+
+function renderSessionWords(){
+  const el = document.getElementById('session-words');
+  if(!sessionWords.length){ el.textContent='Aún no has añadido palabras.'; return; }
+  el.innerHTML = sessionWords.map(w=>
+    `<div style="display:flex;gap:10px;padding:7px 0;border-bottom:1px solid rgba(212,160,23,0.1);">
+      <span style="color:var(--oro2);font-family:'Cinzel',serif;">${w.du}</span>
+      <span style="color:rgba(245,234,208,0.4);">→</span>
+      <span style="color:var(--crema2);">${w.es}</span>
+      <span style="margin-left:auto;font-size:10px;color:rgba(245,234,208,0.35);">${w.cat}</span>
+    </div>`).join('');
+}
+
+// SPEECH
+function speakWord(text){
+  if('speechSynthesis' in window){
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang='es-CO'; u.rate=0.7; u.pitch=1.1;
+    speechSynthesis.speak(u);
+  }
+  showNotif('🔊 '+text);
+}
+
+// EXPORT
+function exportJSON(){
+  const b=new Blob([JSON.stringify(dict,null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(b);
+  a.download='ashekan_dzina_diccionario.json'; a.click();
+  showNotif('📤 Diccionario exportado');
+}
+
+function exportCSV(){
+  const rows=[['Dumuna','Español','Categoría'],...dict.map(w=>[w.du,w.es,w.cat])];
+  const csv=rows.map(r=>r.map(c=>`"${c}"`).join(',')).join('\n');
+  const b=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(b);
+  a.download='ashekan_dzina_diccionario.csv'; a.click();
+  showNotif('📊 CSV exportado para Excel');
+}
+
+function importJSON(e){
+  const f=e.target.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=ev=>{
+    try{
+      const imp=JSON.parse(ev.target.result);
+      if(!Array.isArray(imp)) throw new Error();
+      const added=imp.filter(w=>w.es&&w.du&&!dict.find(d=>d.es===w.es));
+      dict=[...dict,...added];
+      saveDict(); renderDict();
+      showNotif('✅ '+added.length+' palabras importadas');
+    }catch(err){ showNotif('❌ Error al importar'); }
+  };
+  r.readAsText(f); e.target.value='';
+}
+
+// NOTIFICATION
+function showNotif(msg){
+  const el=document.getElementById('notif');
+  el.textContent=msg; el.classList.add('show');
+  clearTimeout(el._t);
+  el._t=setTimeout(()=>el.classList.remove('show'),3500);
+}
+
+// INIT
+renderDict();
+renderPhrases();
+document.getElementById('dict-total').textContent = dict.length;
+document.getElementById('dict-shown').textContent = dict.length;
+</script>
+</body>
+</html>
